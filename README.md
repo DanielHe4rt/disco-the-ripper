@@ -1,10 +1,11 @@
-# Disco the Ripper
 
 <p align="center">
   <a href="https://github.com/danielhe4rt/disco-the-ripper" target="_blank">
     <img src=".github/logo.png">
   </a>
 </p>
+
+# Disco the Ripper
 
 Disco the Ripper was created to rip all messages from a Discord specific channel into JSON via CLI and help people to investigate 
 some servers who has awkward channels before they get deleted. 
