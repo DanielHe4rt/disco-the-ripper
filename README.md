@@ -1,36 +1,61 @@
-<p align="center">
-    <img title="Laravel Zero" height="100" src="https://raw.githubusercontent.com/laravel-zero/docs/master/images/logo/laravel-zero-readme.png" />
-</p>
+# Disco the Ripper
 
 <p align="center">
-  <a href="https://github.com/laravel-zero/framework/actions"><img src="https://img.shields.io/github/workflow/status/laravel-zero/framework/Tests.svg" alt="Build Status"></img></a>
-  <a href="https://packagist.org/packages/laravel-zero/framework"><img src="https://img.shields.io/packagist/dt/laravel-zero/framework.svg" alt="Total Downloads"></a>
-  <a href="https://packagist.org/packages/laravel-zero/framework"><img src="https://img.shields.io/packagist/v/laravel-zero/framework.svg?label=stable" alt="Latest Stable Version"></a>
-  <a href="https://packagist.org/packages/laravel-zero/framework"><img src="https://img.shields.io/packagist/l/laravel-zero/framework.svg" alt="License"></a>
+  <a href="https://github.com/danielhe4rt/disco-the-ripper" target="_blank">
+    <img src=".github/logo.png">
+  </a>
 </p>
 
-<h4> <center>This is a <bold>community project</bold> and not an official Laravel one </center></h4>
+Disco the Ripper was created to rip all messages from a Discord specific channel into JSON via CLI and help people to investigate 
+some servers who has awkward channels before they get deleted. 
 
-Laravel Zero was created by, and is maintained by [Nuno Maduro](https://github.com/nunomaduro), and is a micro-framework that provides an elegant starting point for your console application. It is an **unofficial** and customized version of Laravel optimized for building command-line applications.
+This project was designed with [Laravel Zero](https://laravel-zero.com).
 
-- Built on top of the [Laravel](https://laravel.com) components.
-- Optional installation of Laravel [Eloquent](https://laravel-zero.com/docs/database/), Laravel [Logging](https://laravel-zero.com/docs/logging/) and many others.
-- Supports interactive [menus](https://laravel-zero.com/docs/build-interactive-menus/) and [desktop notifications](https://laravel-zero.com/docs/send-desktop-notifications/) on Linux, Windows & MacOS.
-- Ships with a [Scheduler](https://laravel-zero.com/docs/task-scheduling/) and  a [Standalone Compiler](https://laravel-zero.com/docs/build-a-standalone-application/).
-- Integration with [Collision](https://github.com/nunomaduro/collision) - Beautiful error reporting
+## Installation
 
-------
+### 1. Install the dependencies
 
-## Documentation
+Use the package manager [composer](https://getcomposer.org) to install Disco the Ripper.
 
-For full documentation, visit [laravel-zero.com](https://laravel-zero.com/).
+Go to the project folder after install Composer and run the command below:
+```bash
+composer install
+```
 
-## Support the development
-**Do you like this project? Support it by donating**
+### 2. Setup your credentials
 
-- PayPal: [Donate](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=66BYDWAT92N6L)
-- Patreon: [Donate](https://www.patreon.com/nunomaduro)
+After everything get installed you should create or make copy the `.env.example` and rename it to `.env`.
+
+The env file should contain one key called `AUTHORIZATION` and you should assign his value with your **Discord Web Authorization Token**.
+To get this token, open your Discord App or on the Browser and open the Inspection Page.
+
+- To open Inspection Tab on Discord press `CTRL + SHIFT + I`
+- To open Inspection Tab on Browser, Press F12
+
+There you will click on `Network` tab and filter all `XHR` requests:
+
+![network tab](.github/firstStep.png)
+
+After that you will select any request (red square) to get the Authorization Header:
+
+![network tab](.github/secondStep.png)
+
+If you got your Authorization Token, put it on your `.env` file and you should see something like:
+
+```dotenv
+AUTHORIZATION="ODY2MDU4MjE5ODU5MjE0MzM2.xxxxx.6fazt4YSRCQ6vlWMJwEY7pO5hUM"
+```
+
+## Usage
+
+To start the project, run the command below and select which server/channel you want to retrieve.
+
+```bash
+php artisan ripper:start
+```
+
+## Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 ## License
-
-Laravel Zero is an open-source software licensed under the MIT license.
+[MIT](https://choosealicense.com/licenses/mit/)
