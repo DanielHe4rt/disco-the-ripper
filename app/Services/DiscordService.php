@@ -22,9 +22,9 @@ class DiscordService
         ]);
     }
 
-    public function getProfile()
+    public function getProfile($userId)
     {
-        $uri = 'https://discord.com/api/v9/users/866058219859214336/profile';
+        $uri = "https://discord.com/api/v9/users/$userId/profile";
         $response = $this->client->get($uri);
 
         return json_decode($response->getBody(), true);

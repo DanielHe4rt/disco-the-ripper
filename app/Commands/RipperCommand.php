@@ -39,14 +39,13 @@ class RipperCommand extends Command
     public function handle()
     {
         $service = app(DiscordService::class);
-        $profile = $service->getProfile();
+        $profile = $service->getProfile(config('credentials.userId'));
         $this->info('Salve ' . $profile['user']['username'] . "#" . $profile['user']['discriminator']);
+        $this->info('Lendo servidores ativos na sua conta...');
 
         $result = $this->choice(
-            'Selecione o ID de um servidor para entrarmos.',
-            array_map(function ($item) {
-                return $item['id'] . " - " . $item['nick'] ?? 'sem nickname predefinido';
-            }, $profile['mutual_guilds'])
+            'Selecione um servidor para navegarmos.',
+            $this->transformGuilds($service, $profile)
         );
         $guildId = explode(' - ', $result)[0];
 
@@ -63,11 +62,8 @@ class RipperCommand extends Command
 
         $messages = $this->fetchAllMessagesFromChannel($service, $channelId, $lastMessageId);
 
-        foreach ($messages as $message) {
-            $this->info($message['author']['username'] . ': ' . $message['content']);
-        }
         $baseFileName =  date('YmdHis') . '-' . Str::slug($guild['name']) . '-' . Str::slug($channelName) . '-' . $channelId;
-        dump($baseFileName);
+
         $this->saveMessages($baseFileName, $messages);
 
         $this->info('Tá feito! Encontre os arquivos na sua pasta storage!');
@@ -107,5 +103,15 @@ class RipperCommand extends Command
                 $realName = $filename . "-page-" . ++$key . ".json";
                 file_put_contents(storage_path('app/channels/') . $realName, json_encode($messageChunk));
             });
+    }
+
+    private function transformGuilds(DiscordService $service, $profile)
+    {
+        $result = [];
+        foreach($profile['mutual_guilds'] as $guild) {
+            $guildData = $service->getGuild($guild['id']);
+            $result[] =  $guild['id'] . " - " . $guildData['name'];
+        }
+        return $result;
     }
 }

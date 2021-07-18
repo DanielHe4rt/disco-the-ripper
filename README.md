@@ -25,6 +25,8 @@ composer install
 
 ### 2. Setup your credentials
 
+#### Authorization Token
+
 After everything get installed you should create or make copy the `.env.example` and rename it to `.env`.
 
 The env file should contain one key called `AUTHORIZATION` and you should assign his value with your **Discord Web Authorization Token**.
@@ -43,7 +45,21 @@ After that you will select any request (red square) to get the Authorization Hea
 
 If you got your Authorization Token, put it on your `.env` file and you should see something like:
 
+#### User ID
+
+Go to your Discord Settings and enable the **Developer Mode**.
+![img.png](.github/thirdStep.png)
+
+After that, send any message in any chat on your Discord account and click with the Right button and select the **Copy ID* option.
+
+![img.png](.github/fourthStep.png)
+
+If you paste (CTRL + V) some numbers should appears and should be like: **866058219859214336**.
+
+Your env should have this two tokens to run the project.
+
 ```dotenv
+USERID=866058219859214336
 AUTHORIZATION="ODY2MDU4MjE5ODU5MjE0MzM2.xxxxx.6fazt4YSRCQ6vlWMJwEY7pO5hUM"
 ```
 
