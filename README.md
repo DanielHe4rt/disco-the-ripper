@@ -59,7 +59,7 @@ If you paste (CTRL + V) some numbers should appears and should be like: **866058
 Your env should have this two tokens to run the project.
 
 ```dotenv
-USERID=866058219859214336
+USER_ID=866058219859214336
 AUTHORIZATION="ODY2MDU4MjE5ODU5MjE0MzM2.xxxxx.6fazt4YSRCQ6vlWMJwEY7pO5hUM"
 ```
 
